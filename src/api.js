@@ -25,28 +25,28 @@ const socket = openSocket('http://localhost:8000');
 // THIS IS CURRENTLY DOING NOTHING
 
 
-export const socketsYo = (ConnectedComp) => {
-  class GoogleUsersWrapper extends Component {
+// export const socketsYo = (ConnectedComp) => {
+//   class GoogleUsersWrapper extends Component {
 
-    componentDidMount() {
-			socket.on('getMessage', message => {
-				console.log(message)
-				this.setState({message})
-				// callBack(messageText)
-			});
-    }
+//     componentDidMount() {
+// 			socket.on('getMessage', message => {
+// 				console.log(message)
+// 				this.setState({message})
+// 				// callBack(messageText)
+// 			});
+//     }
 
-		sendMessage(message) {
-			console.log(`sendMessge${message}`)
-			socket.emit('sendMessage', message)
-		} 
+// 		sendMessage(message) {
+// 			console.log(`sendMessge${message}`)
+// 			socket.emit('sendMessage', message)
+// 		} 
 
 
-    render() {
-      return (
-        <ConnectedComp {...this.props} />
-      )
-    }
+//     render() {
+//       return (
+//         <ConnectedComp {...this.props} />
+//       )
+//     }
 
   }
 }

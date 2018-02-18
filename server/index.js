@@ -16,12 +16,12 @@ ws.on('close', function close() {
 
 io.on('connection', (client) => {
   client.on('sendMessage', (message) => {
-  	console.log('sendMessage' + message);
+  	console.log('senddingMessage ' + message);
     ws.send(message);
   });
 
-  ws.on('message', function incoming(message) {
-  	console.log('getMessage' + message);
+  ws.on('message',(message) => {
+  	console.log('gettingMessage ' + message);
   	client.emit('getMessage', message);
 	});
 });
