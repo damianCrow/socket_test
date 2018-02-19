@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-// import { SocketsComp } from './api'
 import openSocket from 'socket.io-client';
 import styled from 'styled-components';
 
