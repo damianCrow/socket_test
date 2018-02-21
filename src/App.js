@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import openSocket from 'socket.io-client';
+// import openSocket from 'socket.io-client';
 import styled from 'styled-components';
 
-const socket = openSocket('http://localhost:8000');
+// const socket = openSocket('http://localhost:8000');
 
 const Button = styled.button`
   position: relative;
@@ -30,8 +30,8 @@ const MessagesList = styled.ul`
   flex: 2;
   align-items: flex-start;
   max-width: 66.6666%;
-  padding: 0 1rem;
-  max-height: 360px;
+  padding: 1rem;
+  max-height: 350px;
   overflow: scroll;
   border: 3px solid #12B7F9;
   margin: calc(19px + 1rem) 3rem;
@@ -88,11 +88,8 @@ class App extends Component {
     this.state = {inputValue: '', messages: []}
   }
 
-  componentDidMount() {
-    socket.on('getMessage', message => {
-      console.log(message)
-      this.addMessageToList(this.createMessageObj(message, 'received'))
-    });
+  componentWillReceiveProps(nextProps) { 
+    this.addMessageToList(this.createMessageObj(nextProps.messageRecieved, 'received'))
   }
 
   createMessageObj(messageBody, messageType) {
@@ -105,9 +102,8 @@ class App extends Component {
 
   sendMessage(message) {
     if(message.length) {
-      console.log(`sendingMessge ${message}`)
       this.addMessageToList(this.createMessageObj(message, 'sent'))
-      socket.emit('sendMessage', message,  Date.now())
+      this.props.sendViaSocket(message)
     } else {
       console.log('there is no message to send.')
     }
